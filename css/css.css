@@ -1,0 +1,458 @@
+/* обнуление */
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+:focus,
+:active {
+  outline: none;
+}
+a:focus,
+a:active {
+  outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+input,
+button,
+textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+button {
+  cursor: pointer;
+}
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+a,
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/* из макета фигмы устанавливаем стандартный свойства шрифта по умолчанию, чтобы это сделать нужно зайти в plugins и выбрать плагин font fascia */
+body {
+  font-family: Rubik;
+  font-size: 12px;
+  color: #616161;
+}
+
+/* из макета фигмы устанавливаем свойства для тех классов, которые будут содержать __container свойства максимальной ширины, чтобы это сделать можно строить сетки с помощью зажимания клавиши F на клавиатуре можно измерить расстояние или высоту */
+
+[class*="__container"] {
+  max-width: 1087px;
+  margin: 0 auto;
+  /* padding добавили, чтобы при уменьшении ширины области видимости элементы не "прилипали к краям" */
+  padding: 0px 30px;
+}
+/* PC */
+@media screen and (max-width: 1086.98) {
+  [class*="__container"] {
+    max-width: 970px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 100%;
+  justify-content: center;
+}
+.header {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.header__container {
+  display: flex;
+  min-height: 114px;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+}
+.header__menu {
+  /* flex-grow: 1; элемент будет занимать все свободное место между header and footer
+    flex-shrink: 1; при необходимоти элемент будет "сжиматься" при увеличении других элементов
+    flex-basis: auto; автоматический размер элементов по основной оси */
+  flex: 1 1 auto;
+}
+.menu {
+  display: flex;
+  justify-content: flex-end;
+}
+.menu__list {
+  display: flex;
+}
+.menu__item {
+  margin-right: 40px;
+}
+.menu__item:last-child {
+  margin-right: 0px;
+}
+.menu__link {
+  font-family: "Raleway";
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.14em;
+  color: #000000;
+}
+.header__button {
+  display: flex;
+  justify-content: flex-end;
+  flex: 0 0 252px;
+  align-items: center;
+}
+
+/* TABLET */
+@media screen and (max-width: 991.98px) {
+  [class*="__container"] {
+    max-width: 750px;
+  }
+  .header__button {
+    flex: 0 0 170px;
+    display: flex;
+  }
+  .menu__item {
+    margin-right: 30px;
+  }
+}
+
+.button {
+  display: inline-block;
+  text-align: center;
+  font-family: "Raleway";
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.14em;
+  color: #fcfdfe;
+  background-color: #ec5863;
+  padding: 14px 25px;
+  width: 144px;
+  height: 40px;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+}
+button:hover {
+  background-color: #e94954;
+  box-shadow: 1px 1px 7px #ec58629c, -1px -1px 7px #ec58629c;
+  color: #fff;
+}
+
+.button_blue {
+  background-color: #4285f4;
+}
+
+.button_blue:hover {
+  background-color: #1168f3;
+  box-shadow: 1px 1px 7px #1168f3a8, -1px -1px 7px #1168f3a8;
+  color: #fff;
+}
+.open-icon-menu {
+  display: none;
+}
+.close-icon-menu {
+  display: none;
+}
+
+@media screen and (max-width: 767.98px) {
+  [class*="__container"] {
+    max-width: none;
+  }
+  /* меню-бургер!!! будет плявляться только на мобильной версии*/
+  .close-icon-menu,
+  .open-icon-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 0 0 30px;
+    height: 18px;
+    margin-left: 20px;
+  }
+
+  .open-icon-menu::before,
+  .open-icon-menu::after {
+    content: "";
+    height: 2px;
+    border-radius: 2px;
+    background-color: #616161;
+    z-index: 11;
+  }
+
+  .header__button {
+    z-index: 11;
+  }
+
+  .open-icon-menu span {
+    height: 2px;
+    border-radius: 2px;
+    background-color: #616161;
+  }
+  /* конец меню-бургер */
+  .menu__body {
+    /* также ля бургер-меню открытие по нажатию кнопки, изначально оно скрыто за областью просмотра */
+    position: fixed;
+    left: 0;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffffe6;
+    padding: 80px 15px 30px 15px;
+    transition: top 0.8s;
+    overflow: auto;
+  }
+  /* специальный псевдокласс для изменения свойства элемента при нажатии на него */
+
+  .header:target .menu__body {
+    top: 0;
+  }
+  /* "прокладка" для меню */
+  .header:target .menu__body::before {
+    content: "";
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 80px;
+    width: 100%;
+    background-color: #fff;
+  }
+  .header:target .open-icon-menu {
+    display: none;
+  }
+
+  .header__container:target .menu__body {
+    top: -100%;
+  }
+  .header__container:target .close-icon-menu {
+    display: none;
+  }
+  /* кнопка "крестик" для меню */
+  .close-icon-menu::before,
+  .close-icon-menu::after {
+    content: "";
+    height: 2px;
+    border-radius: 2px;
+    background-color: #616161;
+    z-index: 11;
+  }
+  .close-icon-menu::before {
+    transform: rotate(45deg);
+  }
+  .close-icon-menu::after {
+    transform: rotate(-45deg);
+  }
+  .close-icon-menu {
+    height: 2px;
+    border-radius: 2px;
+    background-color: transparent;
+  }
+  /* кнопка "крестик" для меню */
+
+  .header__button .button {
+    width: 100px;
+    height: 40px;
+    padding: 14px 15px;
+  }
+  .header__logo {
+    flex-direction: column;
+    z-index: 11;
+  }
+  .menu__list {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .menu__item {
+    margin-bottom: 25px;
+    margin-right: 0px;
+  }
+  .menu__item:last-child {
+    margin-bottom: 0px;
+  }
+  .menu__item:first-child {
+    margin-top: 35px;
+  }
+  .menu__link {
+    font-size: 20px;
+  }
+  .menu__link:hover {
+    text-decoration: underline;
+  }
+}
+
+main {
+  /* flex-grow: 1; элемент будет занимать все свободное место между header and footer
+      flex-shrink: 1; при необходимоти элемент будет "сжиматься" при увеличении других элементов
+      flex-basis: auto; автоматический размер элементов по основной оси */
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+section {
+  max-width: 1087px;
+}
+
+.get-started {
+  margin: 150px 0px 50px 0px;
+}
+
+.get-started__container {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+.get-started__container::before {
+    content: "";
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    right: 28%;
+    top: 0;
+    transform: translate(100%, 0px);
+    background-color: #ec5863;
+    border-radius: 30px 0px 0px 30px;
+}
+
+@media screen and (max-with: 991.98px) {
+    .get-started__container::before {
+        right: 28%;
+        border-radius: 20px 0px 0px 20px;
+    }
+}
+
+.get-started__content {
+  flex: 0 1 50%;
+}
+.get-started__content-img {
+  display: flex;
+  align-items: center;
+}
+.get-started__block-text {
+}
+.block-text {
+}
+.block-text__title {
+  font-size: 44px;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 126%;
+  color: #000000;
+  margin-bottom: 15px;
+}
+.block-text__title span {
+  color: #4285f4;
+}
+
+.block-text__text {
+  width: 375px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 138.5%;
+  letter-spacing: 0.08em;
+  color: #616161;
+}
+.block-text__button {
+  font-weight: 800;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0.14em;
+  color: #fcfdfe;
+  margin-top: 30px;
+}
+.get-started-video {
+  display: flex;
+}
+.video-get-started {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 65px;
+}
+.video-get-started__icon {
+}
+.video-get-started__body {
+  margin-left: 15px;
+}
+.video-get-started__titile {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 126%;
+  letter-spacing: 0.08em;
+  color: #b0b0b0;
+}
+.video-get-started__text {
+  font-size: 9px;
+  line-height: 126%;
+  letter-spacing: 0.165em;
+  text-transform: uppercase;
+  color: #000000;
+  margin-top: 5px;
+}
+.get-started__img {
+  flex: 0 1 50%;
+}
+.get-started__img img {
+    position: relative;
+    width: 520px;
+    height: auto;
+    z-index: 5;
+  }
